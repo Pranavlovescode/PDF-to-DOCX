@@ -1,5 +1,6 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import PDFConverterAPI from './services/api';
+import { injectSpeedInsights } from '@vercel/speed-insights';
 
 interface ConversionResult {
   status: string;
@@ -15,6 +16,10 @@ export default function App() {
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<ConversionResult | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(()=>{
+    injectSpeedInsights();
+  },[])
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
