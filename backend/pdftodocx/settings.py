@@ -26,8 +26,7 @@ SECRET_KEY = 'django-insecure-9#!vw^8i@lx*qimx+9*&v+kq&^=+vz_+-1)s3tz+smkdpc9&4q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost",]
-
+ALLOWED_HOSTS = ["localhost","pdf-to-docx-eight.vercel.app"]
 
 # Application definition
 
@@ -135,6 +134,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'http://127.0.0.1:5173',
+    'https://pdf-to-docx-eight.vercel.app',
 ]
 
 CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
