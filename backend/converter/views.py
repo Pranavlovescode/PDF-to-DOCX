@@ -74,3 +74,20 @@ class PDFToDOCXConvertView(APIView):
             serializer.errors,
             status=status.HTTP_400_BAD_REQUEST
         )
+    
+
+class HealthCheckView(APIView):
+    """
+    API endpoint for health check.
+    
+    GET /api/health/
+    - Returns a simple JSON response indicating the service is running
+    """
+    def get(self, request, *args, **kwargs):
+        return Response(
+            {
+                'status': 'success',
+                'message': 'Service is running'
+            },
+            status=status.HTTP_200_OK
+        )

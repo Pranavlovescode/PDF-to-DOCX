@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-9#!vw^8i@lx*qimx+9*&v+kq&^=+vz_+-1)s3tz+smkdpc9&4q'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ["localhost","pdf-to-docx-eight.vercel.app"]
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1,52.66.239.52,api.pdftodocx.pranavtitambe.in").split(",")
 
 # Application definition
 
@@ -119,7 +119,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Media files configuration
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -149,3 +150,18 @@ CORS_ALLOW_HEADERS = [
     'x-csrftoken',
     'x-requested-with',
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://pdf-to-docx-eight.vercel.app",
+    "https://api.pdftodocx.pranavtitambe.in"
+    
+]
+# only enable the below settings when deploying with HTTPS using Nginx
+
+# # Trust the X-Forwarded-Proto header from Nginx
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# # Force HTTPS redirects for all requests
+# SECURE_SSL_REDIRECT = True
+
+
